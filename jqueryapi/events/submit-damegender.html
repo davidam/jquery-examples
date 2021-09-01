@@ -19,8 +19,8 @@
 </head>
 <body>
  
-<p>Type a female name:</p>
-<form action="javascript:alert( 'success!' );">
+<p>Type a name:</p>
+<form action="javascript:void();">
   <div>
     <input type="text">
     <input type="submit">
@@ -31,14 +31,22 @@
 <script>
 $( "form" ).submit(function( event ) {
     $.getJSON("https://damegender.davidam.com/names/es/"+ $( "input" ).first().val().toUpperCase() +"_female.json", function(result){
-	alert(result[0].name);
-	alert(result[0].frequency);
-	alert(result[0].gender);
+	$("#nameses").append('<p>' + result[0].name + '</p>');
+	$("#nameses").append('<p>' + result[0].frequency + '</p>');
+	$("#nameses").append('<p>' + result[0].gender + '</p>');        
+    });
+    $.getJSON("https://damegender.davidam.com/names/es/"+ $( "input" ).first().val().toUpperCase() +"_male.json", function(result){
+	$("#nameses").append('<p>' + result[0].name + '</p>');
+	$("#nameses").append('<p>' + result[0].frequency + '</p>');
+	$("#nameses").append('<p>' + result[0].gender + '</p>');        
     });
 
     event.preventDefault();
 });
 </script>
- 
+
+<p>
+<div id="nameses"></div>
+</p>
 </body>
 </html>
