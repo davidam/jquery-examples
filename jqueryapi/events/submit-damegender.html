@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>submit demo</title>
+  <style>
+  p {
+    margin: 0;
+    color: blue;
+  }
+  div,p {
+    margin-left: 10px;
+  }
+  span {
+    color: red;
+  }
+  </style>
+  <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+</head>
+<body>
+ 
+<p>Type a female name:</p>
+<form action="javascript:alert( 'success!' );">
+  <div>
+    <input type="text">
+    <input type="submit">
+  </div>
+</form>
+<span></span>
+ 
+<script>
+$( "form" ).submit(function( event ) {
+    $.getJSON("https://damegender.davidam.com/names/es/"+ $( "input" ).first().val().toUpperCase() +"_female.json", function(result){
+	alert(result[0].name);
+	alert(result[0].frequency);
+	alert(result[0].gender);
+    });
+
+    event.preventDefault();
+});
+</script>
+ 
+</body>
+</html>
